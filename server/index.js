@@ -1,34 +1,34 @@
 const express = require("express");
 const { ApolloServer, gql } = require("apollo-server-express");
+const typeDefs = require("./typeDefs/typeDefs");
+const databaseConnection = require("./helpers/database");
 
-const app = express();
-// The GraphQL schema
-const typeDefs = gql`
-	type Query {
-		"A simple type for getting started!"
-		hello: String
-	}
-`;
+(async () => {
+	console.clear();
+	const app = express();
+	console.log("Connecting to the database ...");
+	await databaseConnection();
 
-// A map of functions which return data for the schema.
-const resolvers = {
-	Query: {
-		hello: () => "world",
-	},
-};
+	// A map of functions which return data for the schema.
+	const resolvers = {
+		Query: {
+			// hello: () => "world",
+		},
+	};
 
-const server = new ApolloServer({
-	typeDefs,
-	resolvers,
-	playground: true,
+	const server = new ApolloServer({
+		typeDefs,
+		resolvers,
+		playground: true,
+	});
+
+	await server.start();
+	server.applyMiddleware({ app });
+	app.listen({ port: process.env.PORT }, () => {
+		console.log(
+			`🚀 Server ready at ${process.env.HOST}:${process.env.PORT}/graphql`
+		);
+	});
+})().catch((error) => {
+	console.error("Error starting the server : " + error);
 });
-
-server
-	.start()
-	.then(() => {
-		server.applyMiddleware({ app });
-		app.listen({ port: 4000 }, () => {
-			console.log(`🚀 Server ready at http://localhost:4000`);
-		});
-	})
-	.catch((e) => console.log("Error starting the server"));
