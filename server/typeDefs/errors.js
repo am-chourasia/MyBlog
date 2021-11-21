@@ -1,10 +1,8 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
-const Error = gql`
+export default gql`
 	type Error {
 		path: String!
 		message: String!
 	}
 `;
-
-module.exports = Error;

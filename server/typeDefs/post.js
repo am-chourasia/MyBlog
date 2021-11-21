@@ -1,6 +1,6 @@
-const { gql } = require("apollo-server-express");
+import { gql } from "apollo-server-express";
 
-const post = gql`
+export default gql`
 	extend type Query {
 		getPost(postID: ID!): Post!
 		getPosts: [Post]!
@@ -29,10 +29,8 @@ const post = gql`
 		id: ID!
 		title: String!
 		body: String!
-		tags: [String]
+		tags: [String]!
 		author: User!
 		createdAt: String!
 	}
 `;
-
-module.exports = post;
