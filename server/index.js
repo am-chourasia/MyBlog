@@ -1,9 +1,13 @@
 import express from "express";
-import { ApolloServer, gql } from "apollo-server-express";
+import jwt from "jsonwebtoken";
+import cors from "cors";
 import databaseConnector from "./helpers/database.js";
+import config from "./config.js";
+import { User } from "./models/index.js";
+import { checkAuthHeaders } from "./helpers/auth.js";
+import { ApolloServer, gql } from "apollo-server-express";
 import typeDefs from "./typeDefs/index.js";
 import resolvers from "./resolvers/index.js";
-import cors from "cors";
 
 const main = async () => {
 	console.clear();
@@ -11,7 +15,14 @@ const main = async () => {
 	app.use(cors());
 	console.log("Connecting to the database ...");
 	await databaseConnector();
-	const server = new ApolloServer({ typeDefs, resolvers, playground: true });
+	const server = new ApolloServer({
+		typeDefs,
+		resolvers,
+		context: async ({ req, res }) => {
+			const ret = await checkAuthHeaders({ req, res });
+			return ret;
+		},
+	});
 	await server.start();
 
 	server.applyMiddleware({ app });

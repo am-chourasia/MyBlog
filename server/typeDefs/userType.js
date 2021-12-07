@@ -15,13 +15,13 @@ export default gql`
 	type RegisterResponse {
 		ok: Boolean!
 		user: User
-		errors: [Error]!
+		errors: [Error!]
 	}
 	type LoginResponse {
 		ok: Boolean!
 		accessToken: String!
 		refreshToken: String!
-		errors: [Error]!
+		errors: [Error!]
 	}
 	type User {
 		id: ID!

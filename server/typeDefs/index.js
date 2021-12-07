@@ -1,6 +1,6 @@
-import root from "./root.js";
-import user from "./user.js";
-import post from "./post.js";
-import error from "./errors.js";
+import root from "./rootType.js";
+import user from "./userType.js";
+import post from "./postType.js";
+import error from "./errorsType.js";
 
 export default [root, user, post, error];

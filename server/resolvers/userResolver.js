@@ -1,8 +1,11 @@
 import { User } from "../models/index.js";
+import { attemptLogin } from "../helpers/auth.js";
 
 export default {
 	Query: {
-		currentUser: (parent, args, context, _) => {},
+		currentUser: async (parent, args, context, _) => {
+			return await context.currentUser;
+		},
 	},
 	Mutation: {
 		registerUser: async (root, args, context, info) => {
@@ -11,12 +14,15 @@ export default {
 				return {
 					ok: true,
 					user: user,
-					// errors: [],
 				};
 			} catch (e) {
 				throw new Error(e);
 			}
 		},
-		loginUser: (parent, args, context, info) => {},
+		loginUser: async (parent, args, context, info) => {
+			return {
+				...(await attemptLogin({ ...args })),
+			};
+		},
 	},
 };

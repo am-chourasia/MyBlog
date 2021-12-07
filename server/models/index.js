@@ -1,2 +1,2 @@
-export { default as User } from "./User.js";
-export { default as Post } from "./Post.js";
+export { default as User } from "./UserModel.js";
+export { default as Post } from "./PostModel.js";
