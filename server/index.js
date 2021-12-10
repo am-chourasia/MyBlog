@@ -1,11 +1,10 @@
 import express from "express";
-import jwt from "jsonwebtoken";
 import cors from "cors";
 import databaseConnector from "./helpers/database.js";
-import config from "./config.js";
-import { User } from "./models/index.js";
 import { checkAuthHeaders } from "./helpers/auth.js";
-import { ApolloServer, gql } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import AuthDirectiveTransformer from "./directives/authDirective.js";
 import typeDefs from "./typeDefs/index.js";
 import resolvers from "./resolvers/index.js";
 
@@ -15,12 +14,16 @@ const main = async () => {
 	app.use(cors());
 	console.log("Connecting to the database ...");
 	await databaseConnector();
-	const server = new ApolloServer({
+
+	let schema = makeExecutableSchema({
 		typeDefs,
 		resolvers,
+	});
+	schema = AuthDirectiveTransformer(schema, "auth");
+	const server = new ApolloServer({
+		schema,
 		context: async ({ req, res }) => {
-			const ret = await checkAuthHeaders({ req, res });
-			return ret;
+			return await checkAuthHeaders({ req, res });
 		},
 	});
 	await server.start();

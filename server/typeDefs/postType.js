@@ -2,13 +2,13 @@ import { gql } from "apollo-server-express";
 
 export default gql`
 	extend type Query {
-		getPost(postID: ID!): Post!
-		getPosts: [Post]!
+		getPost(postID: ID!): Post! @auth
+		getPosts: [Post]! @auth
 	}
 	extend type Mutation {
-		createPost(input: postInput): MutationResponse!
-		updatePost(postID: ID!, input: postInput): MutationResponse!
-		removePost(postID: ID!): RemoveMutationResponse!
+		createPost(input: postInput): MutationResponse! @auth
+		updatePost(postID: ID!, input: postInput): MutationResponse! @auth
+		removePost(postID: ID!): RemoveMutationResponse! @auth
 	}
 	input postInput {
 		title: String!

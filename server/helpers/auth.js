@@ -20,12 +20,12 @@ export const genNewToken = async (token) => {
 		const { id } = jwt.verify(token, config.refreshKey);
 		userId = id;
 	} catch (e) {
-		console.log("JWT Refresh Token Not verified: " + e);
+		// "JWT Refresh Token Not verified: "
 		return {};
 	}
 	const user = await User.findById(userId);
 	if (!user) {
-		console.log("User with the given ID in the Refresh Token not present");
+		//"User with the given ID in the Refresh Token not present"
 		return {};
 	}
 	const { accessToken, refreshToken } = await createToken(user);
@@ -38,13 +38,7 @@ export const genNewToken = async (token) => {
 
 // checking for logged user from the request
 export const checkAuthHeaders = async ({ req, res }) => {
-	let loggedUser = {
-		id: "N/A",
-		fullName: "N/A",
-		email: "N/A",
-		password: "N/A",
-		createdAt: Date.now(),
-	};
+	let loggedUser;
 	if (req.headers["x-auth-token"] && req.headers["x-refresh-token"]) {
 		try {
 			const accessToken = req.headers["x-auth-token"];
@@ -82,6 +76,7 @@ export const attemptLogin = async ({ email, password }) => {
 				],
 			};
 		}
+
 		// if the password doesn't match;
 		if (!(await user.comparePassword(password))) {
 			return {
