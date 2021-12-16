@@ -14,12 +14,19 @@ export default {
 			try {
 				const post = await Post.create(args.input);
 				return {
-					ok: true,
+					__typename: "UpsertSuccessful",
 					post: post,
-					error: [],
 				};
 			} catch (error) {
-				console.error("Error creating the post");
+				return {
+					__typename: "PostError",
+					errors: [
+						{
+							path: "createPost",
+							message: `Error creating the given post! : ${error.message}`,
+						},
+					],
+				};
 			}
 		},
 		updatePost: async (_, args, __, ___) => {
@@ -30,28 +37,43 @@ export default {
 					{ new: true }
 				);
 				return {
-					ok: true,
+					__typename: "UpsertSuccessful",
 					post: post,
-					error: [],
 				};
 			} catch (error) {
-				console.error("Error updating the post");
+				return {
+					__typename: "PostError",
+					errors: [
+						{
+							path: "updatePost",
+							message: `Error updating the post with id ${args.postID} : ${error.message}`,
+						},
+					],
+				};
 			}
 		},
 		removePost: async (_, args, __, ___) => {
 			try {
 				await Post.deleteOne({ _id: args.postID });
 				return {
-					ok: true,
-					error: [],
+					__typename: "RemovalSuccessful",
+					removed: true,
 				};
 			} catch (error) {
-				console.error("Error deleting the post");
+				return {
+					__typename: "PostError",
+					errors: [
+						{
+							path: "removePost",
+							message: `Error deleting the post with id ${args.postID} : ${error.message}`,
+						},
+					],
+				};
 			}
 		},
 	},
 	Post: {
-		author: async (parent, args, context, _) => {
+		author: async (parent, _, __, ___) => {
 			return await User.findById({ _id: parent.author });
 		},
 	},

@@ -67,11 +67,11 @@ export const attemptLogin = async ({ email, password }) => {
 		// if the user doesn't exist
 		if (!user) {
 			return {
-				ok: false,
+				__typename: "SigningUnsuccessful",
 				errors: [
 					{
-						path: "email",
-						message: "No user with the given name",
+						path: "attemptLogin:email",
+						message: "No user with the given email",
 					},
 				],
 			};
@@ -80,10 +80,10 @@ export const attemptLogin = async ({ email, password }) => {
 		// if the password doesn't match;
 		if (!(await user.comparePassword(password))) {
 			return {
-				ok: false,
+				__typename: "SigningUnsuccessful",
 				errors: [
 					{
-						path: "password",
+						path: "attemptLogin:password",
 						message: "Password Incorrect!",
 					},
 				],
@@ -92,11 +92,19 @@ export const attemptLogin = async ({ email, password }) => {
 		// creating token:
 		const { accessToken, refreshToken } = await createToken(user);
 		return {
-			ok: true,
+			__typename: "LoginSuccessful",
 			accessToken: accessToken,
 			refreshToken: refreshToken,
 		};
 	} catch (error) {
-		throw Error(error.message);
+		return {
+			__typename: "SigningUnsuccessful",
+			errors: [
+				{
+					path: "attemptLogin",
+					message: error.message,
+				},
+			],
+		};
 	}
 };
