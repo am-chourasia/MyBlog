@@ -6,29 +6,29 @@ This Repository contains code for backend of a basic blog application.
 
 <p align="left"> 
   <a href="https://nodejs.org" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> 
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="60" height="60"/> 
   </a> 
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> 
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="60" height="60"/> 
   </a> 
   <a href="https://expressjs.com" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> 
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="60" height="60"/> 
+  </a> 
+  <a href="https://jwt.io/" target="_blank"> 
+  <img src="https://jwt.io/img/pic_logo.svg" alt="jwt" width="60" height="60" style="background-color:black;"/> 
   </a> 
   <a href="https://graphql.org" target="_blank"> 
-  <img src="https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" alt="graphql" width="40" height="40"/> 
+  <img src="https://www.vectorlogo.zone/logos/graphql/graphql-icon.svg" alt="graphql" width="60" height="60"/> 
   </a> 
   <a href="https://www.apollographql.com/" target="_blank"> 
-  <img src="https://camo.githubusercontent.com/492d19f5d3fb07917042aa9f7b962c6a98d0847afdbc3586211b36c84a7af957/687474703a2f2f7261776769742e636f6d2f6f6f6164652f617765736f6d652d61706f6c6c6f2d6772617068716c2f6d61737465722f6c6f676f2e737667" alt="apollo" width="40" height="40"/> 
+  <img src="https://camo.githubusercontent.com/492d19f5d3fb07917042aa9f7b962c6a98d0847afdbc3586211b36c84a7af957/687474703a2f2f7261776769742e636f6d2f6f6f6164652f617765736f6d652d61706f6c6c6f2d6772617068716c2f6d61737465722f6c6f676f2e737667" alt="apollo" width="60" height="60"/> 
   </a> 
   <a href="https://www.mongodb.com/" target="_blank"> 
-  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> 
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="60" height="60"/> 
   </a> 
   <a href="https://postman.com" target="_blank"> 
-  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> 
+  <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="60" height="60"/> 
   </a>
-  <a href="https://jwt.io/" target="_blank"> 
-  <img src="https://jwt.io/img/pic_logo.svg" alt="jwt" width="40" height="40" style="background-color:black;"/> 
-  </a> 
 </p>
 
 </br>
